@@ -28,7 +28,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-black sm:bg-background/70 sm:backdrop-blur border-b border-white/10">
+    <header className={`fixed top-0 inset-x-0 z-50 border-b ${isEsports ? 'bg-black border-white/10' : 'bg-black sm:bg-background/70 sm:backdrop-blur border-b border-foreground/10'}`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
         <Link href={`/${locale}`} className="flex items-center" aria-label="Home">
           <AnimatePresence mode="wait">
@@ -55,10 +55,10 @@ export default function Navbar() {
           </AnimatePresence>
         </Link>
         <div className="hidden sm:flex items-center gap-6">
-          <Link href={`/${locale}`} className="hover:opacity-80 transition">{t("home")}</Link>
-          <Link href={`/${locale}/about`} className="hover:opacity-80 transition">{t("about")}</Link>
-          <Link href={`/${locale}/contact`} className="hover:opacity-80 transition">{t("contact")}</Link>
-          <Link href={`/${locale}/esports`} className="hover:opacity-80 transition">{t("esports")}</Link>
+          <Link href={`/${locale}`} className={`hover:opacity-80 transition ${isEsports ? 'text-white' : 'text-foreground'}`}>{t("home")}</Link>
+          <Link href={`/${locale}/about`} className={`hover:opacity-80 transition ${isEsports ? 'text-white' : 'text-foreground'}`}>{t("about")}</Link>
+          <Link href={`/${locale}/contact`} className={`hover:opacity-80 transition ${isEsports ? 'text-white' : 'text-foreground'}`}>{t("contact")}</Link>
+          <Link href={`/${locale}/esports`} className={`hover:opacity-80 transition ${isEsports ? 'text-white' : 'text-foreground'}`}>{t("esports")}</Link>
           <motion.div
             className="relative bg-black/40 border border-white/20 rounded-full p-1"
             whileHover={prefersReducedMotion ? undefined : { scale: 1.02 }}
@@ -98,13 +98,13 @@ export default function Navbar() {
             </motion.a>
           </motion.div>
           <div className="flex items-center gap-3">
-            <a aria-label="Instagram" className="hover:opacity-80" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/kurtsystems/?hl=en">
+            <a aria-label="Instagram" className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/kurtsystems/?hl=en">
               <Instagram className="w-5 h-5" />
             </a>
-            <a aria-label="Facebook" className="hover:opacity-80" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/kurtsystems/">
+            <a aria-label="Facebook" className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/kurtsystems/">
               <Facebook className="w-5 h-5" />
             </a>
-            <a aria-label="X (Twitter)" className="hover:opacity-80" target="_blank" rel="noopener noreferrer" href="https://x.com/kurtsystems1?lang=en">
+            <a aria-label="X (Twitter)" className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} target="_blank" rel="noopener noreferrer" href="https://x.com/kurtsystems1?lang=en">
               <Twitter className="w-5 h-5" />
             </a>
           </div>

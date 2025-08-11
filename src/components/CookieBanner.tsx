@@ -38,16 +38,16 @@ export default function CookieBanner() {
   return (
     <div className="fixed bottom-4 inset-x-0 z-40">
       <div className="max-w-3xl mx-auto px-4">
-        <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3">
+        <div className="rounded-xl border border-foreground/10 bg-background/90 backdrop-blur p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 shadow-lg">
           <div className="text-sm leading-relaxed">
-            <div className="font-semibold mb-1">{t("cookie_consent_title")}</div>
-            <div className="opacity-80">
+            <div className="font-semibold mb-1 text-foreground">{t("cookie_consent_title")}</div>
+            <div className="text-foreground/80">
               {t("cookie_consent_desc")} {" "}
-              <a className="underline hover:opacity-80" href={`/${locale}/cookies`}>{t("learn_more")}</a>
+              <a className="underline hover:opacity-80 text-foreground" href={`/${locale}/cookies`}>{t("learn_more")}</a>
             </div>
           </div>
           <div className="flex-1" />
-          <button onClick={accept} className="px-4 py-2 rounded-lg bg-white text-black text-sm font-medium hover:opacity-90 transition">
+          <button onClick={accept} className="px-4 py-2 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90 transition">
             {t("cookie_accept")}
           </button>
         </div>

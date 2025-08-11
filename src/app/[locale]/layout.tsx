@@ -57,24 +57,27 @@ export default async function LocaleLayout({
 
 function Footer({ locale }: { locale: "tr" | "en" }) {
   const t = (key: string) => (translations[locale] ?? translations.tr)[key] ?? key;
+  // Check if on esports path by reading pathname
+  const isEsports = typeof window !== 'undefined' && /\/esports(\/|$)/.test(window.location.pathname);
+  
   return (
-    <footer className="border-t border-white/10 mt-16">
+    <footer className={`border-t mt-16 ${isEsports ? 'border-white/10 bg-black' : 'border-foreground/10'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid gap-6 sm:flex sm:items-center sm:justify-between">
-        <p className="text-sm opacity-70">© {new Date().getFullYear()} Kurtsystems. {t("all_rights_reserved")}</p>
+        <p className={`text-sm ${isEsports ? 'text-white/70' : 'text-foreground/70'}`}>© {new Date().getFullYear()} Kurtsystems. {t("all_rights_reserved")}</p>
         <div className="flex items-center gap-4">
-          <a className="hover:opacity-80" href={`/${locale}/cookies`}>
+          <a className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} href={`/${locale}/cookies`}>
             <span className="text-sm underline">{t("cookies_title")}</span>
           </a>
-          <a className="hover:opacity-80" href={`/${locale}/kvkk`}>
+          <a className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} href={`/${locale}/kvkk`}>
             <span className="text-sm underline">KVKK</span>
           </a>
-          <a className="hover:opacity-80" href="https://www.instagram.com/kurtsystems/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <a className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} href="https://www.instagram.com/kurtsystems/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <Instagram className="w-5 h-5 inline" />
           </a>
-          <a className="hover:opacity-80" href="https://www.facebook.com/kurtsystems/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <a className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} href="https://www.facebook.com/kurtsystems/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <Facebook className="w-5 h-5 inline" />
           </a>
-          <a className="hover:opacity-80" href="https://x.com/kurtsystems1?lang=en" target="_blank" rel="noopener noreferrer" aria-label="X">
+          <a className={`hover:opacity-80 ${isEsports ? 'text-white' : 'text-foreground'}`} href="https://x.com/kurtsystems1?lang=en" target="_blank" rel="noopener noreferrer" aria-label="X">
             <Twitter className="w-5 h-5 inline" />
           </a>
         </div>

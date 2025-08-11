@@ -26,7 +26,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-bold tracking-tight"
+          className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground"
         >
           {t("contact_title")}
         </motion.h1>
@@ -34,7 +34,7 @@ export default function ContactPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="opacity-80 max-w-3xl mx-auto text-lg"
+          className="text-foreground/80 max-w-3xl mx-auto text-lg"
         >
           {t("contact_intro")}
         </motion.p>
@@ -46,55 +46,55 @@ export default function ContactPage() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="rounded-xl border border-white/10 p-8 bg-white/[0.02] hover:bg-white/[0.05] transition"
+          className="rounded-xl border border-foreground/10 p-8 bg-foreground/[0.02] hover:bg-foreground/[0.05] transition"
         >
-          <h2 className="text-2xl font-semibold mb-6">{t("send_message")}</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-foreground">{t("send_message")}</h2>
           <form onSubmit={onSubmit} className="grid gap-6">
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm mb-2">{t("name_label")}</label>
+                <label className="block text-sm mb-2 text-foreground">{t("name_label")}</label>
                 <input 
                   name="name" 
                   required 
-                  className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 outline-none focus:border-white/40 transition" 
+                  className="w-full rounded-lg border border-foreground/15 bg-transparent px-4 py-3 outline-none focus:border-foreground/40 transition text-foreground placeholder:text-foreground/50" 
                 />
               </div>
               <div>
-                <label className="block text-sm mb-2">{t("email_label")}</label>
+                <label className="block text-sm mb-2 text-foreground">{t("email_label")}</label>
                 <input 
                   type="email" 
                   name="email" 
                   required 
-                  className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 outline-none focus:border-white/40 transition" 
+                  className="w-full rounded-lg border border-foreground/15 bg-transparent px-4 py-3 outline-none focus:border-foreground/40 transition text-foreground placeholder:text-foreground/50" 
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm mb-2">{t("subject_label")}</label>
+              <label className="block text-sm mb-2 text-foreground">{t("subject_label")}</label>
               <select 
                 name="subject" 
-                className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 outline-none focus:border-white/40 transition"
+                className="w-full rounded-lg border border-foreground/15 bg-background px-4 py-3 outline-none focus:border-foreground/40 transition text-foreground"
               >
-                <option value="">{t("subject_choose")}</option>
-                <option value="business">{t("subject_business")}</option>
-                <option value="sponsorship">{t("subject_sponsorship")}</option>
-                <option value="esports">{t("subject_esports")}</option>
-                <option value="technology">{t("subject_technology")}</option>
-                <option value="other">{t("subject_other")}</option>
+                <option value="" className="text-foreground">{t("subject_choose")}</option>
+                <option value="business" className="text-foreground">{t("subject_business")}</option>
+                <option value="sponsorship" className="text-foreground">{t("subject_sponsorship")}</option>
+                <option value="esports" className="text-foreground">{t("subject_esports")}</option>
+                <option value="technology" className="text-foreground">{t("subject_technology")}</option>
+                <option value="other" className="text-foreground">{t("subject_other")}</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm mb-2">{t("message_label")}</label>
+              <label className="block text-sm mb-2 text-foreground">{t("message_label")}</label>
               <textarea 
                 name="message" 
                 rows={6} 
                 required 
-                className="w-full rounded-lg border border-white/15 bg-transparent px-4 py-3 outline-none focus:border-white/40 transition resize-none" 
+                className="w-full rounded-lg border border-foreground/15 bg-transparent px-4 py-3 outline-none focus:border-foreground/40 transition resize-none text-foreground placeholder:text-foreground/50" 
               />
             </div>
             <button 
               type="submit" 
-              className="px-6 py-3 rounded-lg bg-white text-black font-medium hover:opacity-90 transition shadow-lg flex items-center justify-center gap-2"
+              className="px-6 py-3 rounded-lg bg-foreground text-background font-medium hover:opacity-90 transition shadow-lg flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
               {t("send")}
@@ -118,33 +118,33 @@ export default function ContactPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="grid gap-6"
         >
-          <div className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-emerald-500/10 to-indigo-500/10 hover:bg-gradient-to-br hover:from-emerald-500/15 hover:to-indigo-500/15 transition">
-            <h3 className="font-semibold mb-4">{t("contact_info")}</h3>
+          <div className="rounded-xl border border-foreground/10 p-6 bg-gradient-to-br from-emerald-500/10 to-indigo-500/10 hover:bg-gradient-to-br hover:from-emerald-500/15 hover:to-indigo-500/15 transition">
+            <h3 className="font-semibold mb-4 text-foreground">{t("contact_info")}</h3>
             <div className="grid gap-4">
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 opacity-60" />
-                <span className="text-sm opacity-80">info@kurtsystems.com</span>
+                <Mail className="w-5 h-5 text-foreground/60" />
+                <span className="text-sm text-foreground/80">info@kurtsystems.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 opacity-60" />
-                <span className="text-sm opacity-80">+90 (XXX) XXX XX XX</span>
+                <Phone className="w-5 h-5 text-foreground/60" />
+                <span className="text-sm text-foreground/80">+90 (XXX) XXX XX XX</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 opacity-60" />
-                <span className="text-sm opacity-80">İstanbul, Türkiye</span>
+                <MapPin className="w-5 h-5 text-foreground/60" />
+                <span className="text-sm text-foreground/80">İstanbul, Türkiye</span>
               </div>
               <div className="flex items-center gap-3">
-                <Clock className="w-5 h-5 opacity-60" />
-                <span className="text-sm opacity-80">Pzt - Cmt: 09:00 - 18:00</span>
+                <Clock className="w-5 h-5 text-foreground/60" />
+                <span className="text-sm text-foreground/80">Pzt - Cmt: 09:00 - 18:00</span>
               </div>
             </div>
           </div>
 
-          <div className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition">
-            <h3 className="font-semibold mb-4">{t("social")}</h3>
+          <div className="rounded-xl border border-foreground/10 p-6 bg-foreground/[0.02] hover:bg-foreground/[0.05] transition">
+            <h3 className="font-semibold mb-4 text-foreground">{t("social")}</h3>
             <div className="grid gap-3">
               <a 
-                className="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:border-white/30 transition"
+                className="flex items-center gap-3 p-3 rounded-lg border border-foreground/10 hover:border-foreground/30 transition text-foreground"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 href="https://www.instagram.com/kurtsystems/?hl=en"
@@ -153,7 +153,7 @@ export default function ContactPage() {
                 <span className="text-sm">@kurtsystems</span>
               </a>
               <a 
-                className="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:border-white/30 transition"
+                className="flex items-center gap-3 p-3 rounded-lg border border-foreground/10 hover:border-foreground/30 transition text-foreground"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 href="https://www.facebook.com/kurtsystems/"
@@ -162,7 +162,7 @@ export default function ContactPage() {
                 <span className="text-sm">Kurtsystems</span>
               </a>
               <a 
-                className="flex items-center gap-3 p-3 rounded-lg border border-white/10 hover:border-white/30 transition"
+                className="flex items-center gap-3 p-3 rounded-lg border border-foreground/10 hover:border-foreground/30 transition text-foreground"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 href="https://x.com/kurtsystems1?lang=en"
@@ -173,12 +173,12 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition">
-            <h3 className="font-semibold mb-4">{t("esports_contact")}</h3>
-            <div className="grid gap-3 text-sm opacity-80">
+          <div className="rounded-xl border border-foreground/10 p-6 bg-foreground/[0.02] hover:bg-foreground/[0.05] transition">
+            <h3 className="font-semibold mb-4 text-foreground">{t("esports_contact")}</h3>
+            <div className="grid gap-3 text-sm text-foreground/80">
               <p>ULF E-Sports takımı için:</p>
               <a 
-                className="underline underline-offset-4 hover:opacity-80 transition"
+                className="underline underline-offset-4 hover:opacity-80 transition text-foreground"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 href="https://x.com/ulfesports_gg?lang=en"
@@ -186,7 +186,7 @@ export default function ContactPage() {
                 X - ULF E-Sports
               </a>
               <a 
-                className="underline underline-offset-4 hover:opacity-80 transition"
+                className="underline underline-offset-4 hover:opacity-80 transition text-foreground"
                 target="_blank" 
                 rel="noopener noreferrer" 
                 href="https://lolesports.com/teams/ulf-esports"
@@ -206,7 +206,7 @@ export default function ContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl font-bold"
+          className="text-3xl font-bold text-foreground"
         >
           {t("quick_access")}
         </motion.h2>
@@ -217,9 +217,9 @@ export default function ContactPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex items-center justify-center gap-4 flex-wrap"
         >
-          <a href="/" className="px-6 py-3 rounded-lg bg-white text-black font-medium hover:opacity-90 transition shadow-lg">{t("home")}</a>
-          <a href="/about" className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition">{t("about")}</a>
-          <a href="/esports" className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition">{t("esports")}</a>
+          <a href="/" className="px-6 py-3 rounded-lg bg-foreground text-background font-medium hover:opacity-90 transition shadow-lg">{t("home")}</a>
+          <a href="/about" className="px-6 py-3 rounded-lg border border-foreground/20 hover:border-foreground/40 transition text-foreground">{t("about")}</a>
+          <a href="/esports" className="px-6 py-3 rounded-lg border border-foreground/20 hover:border-foreground/40 transition text-foreground">{t("esports")}</a>
         </motion.div>
       </section>
     </main>
