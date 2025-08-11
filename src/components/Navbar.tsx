@@ -194,6 +194,7 @@ export default function Navbar() {
                 <button
                   onClick={closeMenu}
                   className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                  aria-label="Close menu"
                 >
                   <X className="w-6 h-6 text-white" />
                 </button>

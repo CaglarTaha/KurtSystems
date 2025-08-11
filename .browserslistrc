@@ -1,0 +1,14 @@
+# Browser support for modern features
+# Remove legacy polyfills for better performance
+
+# Modern browsers only
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# No IE support
+not ie <= 11
+not op_mini all
+not android <= 4.4
+not ios_saf <= 12

@@ -3,8 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
   images: {
     formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       { protocol: "https", hostname: "kingwoodstud.com" },
       { protocol: "https", hostname: "encrypted-tbn0.gstatic.com" },
@@ -22,6 +27,11 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
+  modularizeImports: {
+    "lucide-react": {
+      transform: "lucide-react/dist/esm/icons/{{member}}",
+    },
   },
   async headers() {
     return [

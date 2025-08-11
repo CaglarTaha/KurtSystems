@@ -60,3 +60,23 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Critical inline styles for LCP optimization */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prevent layout shift */
+.aspect-ratio-43 {
+  aspect-ratio: 4/3;
+}
+
+/* Font loading is handled by Next.js font optimization */
+
+/* Reduce render blocking */
+.critical-above-fold {
+  contain: layout style paint;
+}
