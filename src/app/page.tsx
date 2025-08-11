@@ -1,103 +1,289 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ExternalLink, Shield, Gauge, Layers, Hammer, Headphones, Award, Users, Clock, TrendingUp, ChevronDown } from "lucide-react";
+import AnimatedNumber from "@/components/AnimatedNumber";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function Home() {
+  const { t, locale } = useLocale();
+  // Static page: ensure deterministic HTML for SEO
+  // Next can statically generate this page
+  // (Dynamic data is not used here)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const STATIC_STATS = {
+    sessions: 1200,
+    injuryReductionPercent: 30,
+    teams: 15,
+    sensorDataMillions: 5,
+  };
+  const faqItems = [
+    { q: t("home_faq_q1"), a: t("home_faq_a1") },
+    { q: t("home_faq_q2"), a: t("home_faq_a2") },
+    { q: t("home_faq_q3"), a: t("home_faq_a3") },
+  ];
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="relative min-h-[calc(100vh-4rem)] overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(40rem_40rem_at_20%_10%,rgba(99,102,241,0.15),transparent),radial-gradient(30rem_30rem_at_80%_20%,rgba(16,185,129,0.15),transparent)]" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid gap-20">
+        <section className="grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-4xl sm:text-5xl font-bold tracking-tight"
+            >
+              {t("hero_title")}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-4 text-lg opacity-80"
+            >
+              {t("hero_desc")}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-8 flex items-center gap-4 flex-wrap"
+            >
+              <Link href="#features" className="px-6 py-3 rounded-lg bg-white text-black font-medium hover:opacity-90 transition shadow-lg">{t("btn_explore") || "Sistemi Keşfet"}</Link>
+              <Link href={`/${locale}/esports`} className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition">{t("esports")}</Link>
+              <Link href={`/${locale}/about`} className="px-6 py-3 rounded-lg border border-white/20 hover:border-white/40 transition">{t("about")}</Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-10 flex items-center gap-6"
+            >
+              <a className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 hover:border-white/30 transition" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/kurtsystems/?hl=en">
+                <span className="text-sm">Instagram</span>
+              </a>
+              <a className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 hover:border-white/30 transition" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/kurtsystems/">
+                <span className="text-sm">Facebook</span>
+              </a>
+              <a className="flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 hover:border-white/30 transition" target="_blank" rel="noopener noreferrer" href="https://x.com/kurtsystems1?lang=en">
+                <span className="text-sm">X</span>
+              </a>
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="relative aspect-[4/3] rounded-xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 overflow-hidden"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <Image 
+              src="/mainlogo.png" 
+              alt="Kurtsystems Main Logo" 
+              fill 
+              priority 
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+              className="object-cover rounded-lg" 
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div>
+        </section>
+
+        <section id="how-it-works" className="grid gap-8 text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            {t("home_how_it_works")}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="opacity-80 max-w-2xl mx-auto"
+          >
+            {t("home_intro")}
+          </motion.p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                step: "01",
+                title: t("hiw_01_title"),
+                desc: t("hiw_01_desc"),
+              },
+              {
+                step: "02",
+                title: t("hiw_02_title"),
+                desc: t("hiw_02_desc"),
+              },
+              {
+                step: "03",
+                title: t("hiw_03_title"),
+                desc: t("hiw_03_desc"),
+              },
+              {
+                step: "04",
+                title: t("hiw_04_title"),
+                desc: t("hiw_04_desc"),
+              },
+            ].map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition"
+              >
+                <div className="text-sm opacity-60 font-mono">{s.step}</div>
+                <h3 className="mt-1 font-semibold">{s.title}</h3>
+                <p className="mt-2 text-sm opacity-70">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="features" className="grid gap-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl font-bold text-center"
+          >
+            {t("home_features")}
+          </motion.h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[ 
+              { title: t("feat_perf_title"), desc: t("feat_perf_desc"), Icon: Gauge },
+              { title: t("feat_sec_title"), desc: t("feat_sec_desc"), Icon: Shield },
+              { title: t("feat_scale_title"), desc: t("feat_scale_desc"), Icon: Layers },
+              { title: t("feat_uiux_title"), desc: t("feat_uiux_desc"), Icon: Hammer },
+              { title: t("feat_integ_title"), desc: t("feat_integ_desc"), Icon: ExternalLink },
+              { title: t("feat_support_title"), desc: t("feat_support_desc"), Icon: Headphones },
+            ].map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition"
+              >
+                <div className="flex items-center gap-3">
+                  <f.Icon className="w-5 h-5" />
+                  <h3 className="font-semibold">{f.title}</h3>
+                </div>
+                <p className="mt-2 text-sm opacity-70">{f.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="specs" className="grid lg:grid-cols-2 gap-8 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5 }}
+            className="rounded-xl border border-white/10 p-6 bg-white/[0.02] hover:bg-white/[0.05] transition"
+          >
+            <h2 className="text-2xl font-semibold">{t("specs_title")}</h2>
+            <ul className="mt-4 grid gap-2 text-sm opacity-80 list-disc list-inside">
+              <li>{t("spec_item1")}</li>
+              <li>{t("spec_item2")}</li>
+              <li>{t("spec_item3")}</li>
+              <li>{t("spec_item4")}</li>
+              <li>{t("spec_item5")}</li>
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="rounded-xl border border-white/10 p-6 bg-gradient-to-br from-emerald-500/10 to-indigo-500/10 hover:bg-gradient-to-br hover:from-emerald-500/15 hover:to-indigo-500/15 transition"
+          >
+            <h3 className="font-semibold">{t("benefits_title")}</h3>
+            <ul className="mt-3 grid gap-2 text-sm opacity-80 list-disc list-inside">
+              <li>{t("benefit_1")}</li>
+              <li>{t("benefit_2")}</li>
+              <li>{t("benefit_3")}</li>
+              <li>{t("benefit_4")}</li>
+            </ul>
+          </motion.div>
+        </section>
+
+        {/* Stats section temporarily removed until real static values are provided */}
+
+        <section id="faq" className="grid gap-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="text-3xl font-bold text-center"
+          >
+            {t("home_faq")}
+          </motion.h2>
+          <div className="grid gap-4 w-full max-w-3xl md:max-w-4xl mx-auto">
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <motion.div
+                  key={item.q}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className={`rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.05] backdrop-blur-sm transition-all ${isOpen ? "shadow-lg ring-1 ring-white/10" : ""}`}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${index}`}
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    className="w-full px-6 py-5 text-left flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/20"
+                  >
+                    <span className="font-medium text-base md:text-lg pr-4">{item.q}</span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="flex-shrink-0 text-white/80"
+                    >
+                      <ChevronDown className="w-5 h-5" />
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-panel-${index}`}
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pt-0 text-sm md:text-base opacity-80 leading-relaxed">
+                          {item.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        
+      </div>
+    </main>
   );
 }
